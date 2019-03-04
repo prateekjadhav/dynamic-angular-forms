@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormArray } from '@angular/forms';
+import { passwordValidator } from '../shared/password.validator';
 
 @Component({
   selector: 'app-my-forms',
@@ -7,6 +8,11 @@ import { FormControl, FormBuilder, FormArray } from '@angular/forms';
   styleUrls: ['./my-forms.component.css']
 })
 export class MyFormsComponent implements OnInit {
+
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit() {
+  }
 
 
   get alterEmail(){
@@ -41,6 +47,8 @@ export class MyFormsComponent implements OnInit {
     firstName : [''],
     lastName : [''],
     email : [''],
+    password : [''],
+    confirmPassword : [''],
     address : this.fb.group({
       city : [''],
       state : [''],
@@ -48,11 +56,12 @@ export class MyFormsComponent implements OnInit {
     }),
     alterEmail : this.fb.array([]),
     alterAddress : this.fb.array([])
-  });
+  },{validators : passwordValidator});
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit() {
+  submit(){
+    console.log(this.profileForm.errors);
   }
+
+ 
 
 }
