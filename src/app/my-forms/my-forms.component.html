@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <h2>Profile Form</h2>
+  <!-- {{profileForm.status | json}} -->
+  {{profileForm.value | json}}
+  <br><br><br>
+  <form [formGroup]="profileForm">
+    <div class="form-group">
+      <label for="">First Name</label>
+      <input type="text" class="form-control" formControlName="firstName">
+    </div>
+
+    <div class="form-group">
+      <label for="">Last Name</label>
+      <input type="text" class="form-control" formControlName="lastName">
+    </div>
+
+    <div class="form-group">
+      <label for="">Email</label>
+      <input type="button" value="Add Email" (click)="addEmail()">
+      <input type="text" class="form-control" formControlName="email">
+
+      <div formArrayName="alterEmail" *ngFor="let email of alterEmail.controls; let i = index">
+        <input type="text" class="form-control" [formControlName]="i">
+        <input type="button" value="Remove" (click)="remove(i)">
+      </div>
+    </div>
+
+    <div formGroupName="address">
+      
+      <div class="form-group">
+        <label for="">City</label>
+        <input type="text" class="form-control" formControlName="city">
+      </div>
+
+      <div class="form-group">
+        <label for="">State</label>
+        <input type="text" class="form-control" formControlName="state">
+      </div>
+
+      <div class="form-group">
+        <label for="">Country</label>
+        <input type="text" class="form-control" formControlName="country">
+      </div>
+
+    </div>
+    <input type="button" value="Add Address" (click)="addAddress()">
+    <div formArrayName="alterAddress" *ngFor="let add of alterAddress.controls; let i = index">
+      <div [formGroupName] = "i">
+      <div class="form-group">
+        <label for="">City</label>
+        <input type="text" class="form-control" formControlName="city">
+      </div>
+
+      <div class="form-group">
+        <label for="">State</label>
+        <input type="text" class="form-control" formControlName="state">
+      </div>
+
+      <div class="form-group">
+        <label for="">Country</label>
+        <input type="text" class="form-control" formControlName="country">
+      </div>
+    </div>
+    <input type="button" value="Remove" (click)="removeAddress(i)">
+    </div>
+  </form>
+</div>
