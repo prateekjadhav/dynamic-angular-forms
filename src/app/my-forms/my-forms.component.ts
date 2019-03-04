@@ -24,7 +24,7 @@ export class MyFormsComponent implements OnInit {
   get alterAddress(){
     return this.profileForm.get('alterAddress') as FormArray;
   }
-
+    
   addAddress(){
     this.alterAddress.push(this.fb.group({
       city : [''],
